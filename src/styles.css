@@ -1,0 +1,111 @@
+.weather-app {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.green {
+  background-color: #64958f;
+  border: solid 2.02px;
+  border-color: #64958f;
+  padding: 40px 40px 5px 40px;
+  margin: 10px auto 0 auto;
+  width: 500px;
+  display: block;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.white {
+  background-color: white;
+  color: #64958f;
+  border-right: solid 2.02px;
+  border-bottom: solid 2.02px;
+  border-left: solid 2.02px;
+  padding: 40px 40px 5px 40px;
+  margin: 0 auto 10px auto;
+  width: 500px;
+  display: block;
+  border-radius: 0 0 10px 10px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.search {
+  display: block;
+  margin: 0 auto;
+}
+
+#celsius,
+#farenheit {
+  color: white;
+}
+
+#geolocation {
+  margin: 0 0 0 10px;
+}
+
+#geolocation: hover {
+  cursor: pointer;
+}
+
+#choose {
+  padding: 0;
+  font-size: larger;
+}
+
+#icon-big {
+  text-align: center;
+  font-size: 120px;
+  margin: 0;
+  padding: 10px 20px 45px 20px;
+}
+
+#temperature {
+  text-align: center;
+  padding: 5px 20px 0 20px;
+  font-size: 50px;
+}
+
+#information {
+  font-size: 15px;
+  margin: -100px 0 0 230px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#description {
+  text-align: center;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+#description-weather {
+  font-size: 20px;
+}
+
+.change {
+  padding: 40px 0 0 0;
+}
+.day {
+  margin: 0px;
+}
+
+.next-days {
+  text-align: center;
+}
+
+.next-days i {
+  display: block;
+  margin: 0 auto;
+}
+
+.signature {
+  text-align: center;
+}

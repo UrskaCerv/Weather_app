@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/7c1061b460.js" crossorigin="anonymous"></script>
+    <title>Weather</title>
+    <link rel="stylesheet" href="src/styles.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="weather-app-wrapper">
+            <div class="weather-app">
+                <div class="green">
+                    <div class="search">
+                        <form class="row" id="change-city">
+                            <div class="form-group mb-2"></div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="text" class="form-control" placeholder="Enter a city" id="write-city" />
+                            </div>
+                            <button type="submit" class="btn btn-secondary mb-2">
+                                Search
+                            </button>
+                            <button type="submit" class="btn btn-secondary mb-2" id="geolocation">
+                                My location
+                            </button>
+                        </form>
+                    </div>
+                    <div class="row" id="description">
+                        <p>
+                        <div>
+                            <strong id="city"></strong>,</div> &nbsp;
+                        <div id="location-and-time">Sunday 12:00</div>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <i class="fas fa-cloud-sun" id="icon-big"></i>
+                        </div>
+                        <div class="col-2">
+                            <div class="row" id="temperature">°</div>
+                        </div>
+                        <div class="col-2" id="choose">
+                            <a href="" id="celsius">c</a> | <a href="" id="farenheit">f</a>
+                        </div>
+                        <div class="col-3">
+                            <ul id="information">
+                                <div class="col-3"></div>
+                                <li id="description-weather"></li>
+                                <li> Humidity: <span id="humidity"></span> %</li>
+                                <li>Wind: <span id="wind"></span> m/s</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="graphic">
+            <img src="img/green-01.png" alt="graphic" />
+        </div>
+        <div class="white">
+            <div class="row" id="forecast">
+                <div class="col-2" id="next-days">
+                    <p>
+                        mon
+                        <br />
+                        <i class="fas fa-cloud"></i>
+                        <br />
+                        <span class="day">13°</span> <span class="night">3°</span>
+                    </p>
+                </div>
+                <div class="col-2" id="next-days">
+                    <p>
+                        tue
+                        <br />
+                        <i class="fas fa-cloud-sun"></i>
+                        <br />
+                        <span class="day">15°</span> <span class="night">6°</span>
+                    </p>
+                </div>
+                <div class="col-2" id="next-days">
+                    <p>
+                        wed
+                        <br />
+                        <i class="fas fa-sun"></i>
+                        <br />
+                        <span class="day">17°</span> <span class="night">7°</span>
+                    </p>
+                </div>
+                <div class="col-2" id="next-days">
+                    <p>
+                        thu
+                        <br />
+                        <i class="fas fa-sun"></i>
+                        <br />
+                        <span class="day">19°</span> <span class="night">9°</span>
+                    </p>
+                </div>
+                <div class="col-2" id="next-days">
+                    <p>
+                        fri
+                        <br />
+                        <i class="fas fa-cloud-showers-heavy"></i>
+                        <br />
+                        <span class="day">15°</span> <span class="night">5°</span>
+                    </p>
+                </div>
+                <div class="col-2" id="next-days">
+                    <p>
+                        sat
+                        <br />
+                        <i class="fas fa-cloud"></i>
+                        <br />
+                        <span class="day">13°</span> <span class="night">3°</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="signature"><small>Coded by Urska Cerv</small></div>
+    </div>
+    <script src="src/index.js"></script>
+    </div>
+</body>
+
+</html>
