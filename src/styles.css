@@ -79,6 +79,10 @@ ul {
   padding: 0;
 }
 
+li:first-letter {
+  text-transform: capitalize;
+}
+
 #description {
   text-align: center;
   font-size: 30px;
@@ -88,6 +92,10 @@ ul {
 
 #description-weather {
   font-size: 20px;
+}
+
+#last-updated {
+  padding: 0 0 0 18px;
 }
 
 .change {
