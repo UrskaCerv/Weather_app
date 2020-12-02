@@ -57,10 +57,9 @@ img {
 }
 
 #icon-big {
-  text-align: center;
-  font-size: 120px;
-  margin: 0;
-  padding: 10px 20px 45px 20px;
+  margin: -20px;
+  padding: 0;
+  width: 210px;
 }
 
 #temperature {
