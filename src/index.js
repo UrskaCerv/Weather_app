@@ -50,40 +50,26 @@ function showWeather(response) {
 }
 
 function searchCity(city) {
-  let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
+  let apiKey = "ec0871cacae579eca821990b4ac7095a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
 }
 
 function changeLocation(event) {
   event.preventDefault();
-  //let functionCity = document.querySelector("#city");
-  //let newCity = document.querySelector("#write-city");
-  //if (newCity.value !== "undefined") {
-  //let newCityCapitalized = newCity.value.split(" ");
-  //for (let i = 0; i < newCityCapitalized.length; i++) {
-  //newCityCapitalized[i] =
-  //newCityCapitalized[i][0].toUpperCase() + newCityCapitalized[i].slice(1);
-  //}
-  //newCityCapitalized = newCityCapitalized.join(" ");
-  //} else {
-  // }
-  //functionCity.innerHTML = `${newCityCapitalized}`;
   let city = document.querySelector("#write-city").value;
   searchCity(city);
 }
 
 function searchPosition(position) {
-  debugger;
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
-  let apiKey = "cddfb1e3d89e2258740a8f1797f0794";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&unit=metric&appid=${apiKey}`;
+  let apiKey = "ec0871cacae579eca821990b4ac7095a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
 }
 
 function geolocate(event) {
-  debugger;
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchPosition);
 }
@@ -98,7 +84,7 @@ function changeUnitF(event) {
 
   //axios.get(apiUrl).then(showWeather);
   temperature.innerHTML = 66 + "°";
-  farenheit.innerHTML = "<strong><u>f</strong></u>";
+  fahrenheit.innerHTML = "<strong><u>f</strong></u>";
   celsius.innerHTML = "c";
 }
 
@@ -110,7 +96,7 @@ function changeUnitC(event) {
 function changeUnitCAutomatic() {
   let temperature = document.querySelector("#temperature");
   let celsius = document.querySelector("#celsius");
-  let farenheit = document.querySelector("#farenheit");
+  let fahrenheit = document.querySelector("#fahrenheit");
   //let functionCity = document.querySelector("#city");
   // let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
   // let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${functionCity}&appid=${apiKey}&units=metric`;
@@ -118,7 +104,7 @@ function changeUnitCAutomatic() {
   // axios.get(apiUrl).then(showWeather);
   temperature.innerHTML = 18 + "°";
   celsius.innerHTML = "<strong><u>c</strong></u>";
-  farenheit.innerHTML = "f";
+  fahrenheit.innerHTML = "f";
 }
 
 //change time and set unit
@@ -144,4 +130,4 @@ farenheit.addEventListener("click", changeUnitF);
 let celsuis = document.querySelector("#celsuis");
 celsius.addEventListener("click", changeUnitC);
 
-searchCity("Geneva");
+searchCity("Geneve");
