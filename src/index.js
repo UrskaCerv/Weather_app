@@ -26,8 +26,9 @@ function formatDate(date) {
 function showWeather(response) {
   event.preventDefault();
   document.querySelector("#city").innerHTML = response.data.name;
+  celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML = `${Math.round(
-    response.data.main.temp
+    celsiusTemperature
   )}°`;
 
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -75,43 +76,48 @@ function geolocate(event) {
 }
 
 function changeUnitF(event) {
-  let temperature = document.querySelector("#temperature");
-  let choose = document.querySelector("#choose");
   event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let temperature = document.querySelector("#temperature");
+
+  //let choose = document.querySelector("#choose");
   //let functionCity = document.querySelector("#city");
   //let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
   //let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${functionCity}&appid=${apiKey}&units=imperial`;
-
   //axios.get(apiUrl).then(showWeather);
-  temperature.innerHTML = 66 + "°";
+  temperature.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
   fahrenheit.innerHTML = "<strong><u>f</strong></u>";
   celsius.innerHTML = "c";
 }
 
 function changeUnitC(event) {
   event.preventDefault();
-  changeUnitCAutomatic();
-}
-
-function changeUnitCAutomatic() {
   let temperature = document.querySelector("#temperature");
-  let celsius = document.querySelector("#celsius");
-  let fahrenheit = document.querySelector("#fahrenheit");
-  //let functionCity = document.querySelector("#city");
-  // let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
-  // let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${functionCity}&appid=${apiKey}&units=metric`;
-
-  // axios.get(apiUrl).then(showWeather);
-  temperature.innerHTML = 18 + "°";
-  celsius.innerHTML = "<strong><u>c</strong></u>";
+  temperature.innerHTML = `${Math.round(celsiusTemperature)}°`;
   fahrenheit.innerHTML = "f";
+  celsius.innerHTML = "<strong><u>c</strong></u>";
+  //changeUnitCAutomatic();
 }
+
+//function changeUnitCAutomatic() {
+//let temperature = document.querySelector("#temperature");
+//let celsius = document.querySelector("#celsius");
+//let fahrenheit = document.querySelector("#fahrenheit");
+//let functionCity = document.querySelector("#city");
+// let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
+// let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${functionCity}&appid=${apiKey}&units=metric`;
+
+// axios.get(apiUrl).then(showWeather);
+temperature.innerHTML = 18 + "°";
+celsius.innerHTML = "<strong><u>c</strong></u>";
+fahrenheit.innerHTML = "f";
+//}
 
 //change time and set unit
 let locationAndTime = document.querySelector("#location-and-time");
 let currentTime = new Date();
 locationAndTime.innerHTML = formatDate(currentTime);
-changeUnitCAutomatic();
+//changeUnitCAutomatic();
 
 //change location
 let city = document.querySelector("#city");
@@ -122,11 +128,12 @@ submit.addEventListener("submit", changeLocation);
 let geolocation = document.querySelector("#geolocation");
 geolocation.addEventListener("click", geolocate);
 
-//celsius
+//celsius vs fahrenheit
+let celsiusTemperature = null;
 let farenheit = document.querySelector("#farenheit");
-farenheit.addEventListener("click", changeUnitF);
+fahrenheit.addEventListener("click", changeUnitF);
 
-//farenheit
+//fahrenheit
 let celsuis = document.querySelector("#celsuis");
 celsius.addEventListener("click", changeUnitC);
 
