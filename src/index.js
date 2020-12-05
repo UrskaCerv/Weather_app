@@ -133,6 +133,7 @@ function geolocate(event) {
 
 function changeUnitF(event) {
   event.preventDefault();
+
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   let temperature = document.querySelector("#temperature");
 
@@ -140,12 +141,15 @@ function changeUnitF(event) {
   fahrenheit.innerHTML = "<strong><u>f</strong></u>";
   celsius.innerHTML = "c";
 
-  let forecastTemperature = document.querySelectorAll("#forecastTemperature");
-  console.log(forecastTemperature);
-  forecastTemperature.forEach(function (item) {
-    let currentTemp = item.innerHTML;
-    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
-  });
+  if (currentUnitState === "metric") {
+    let forecastTemperature = document.querySelectorAll("#forecastTemperature");
+    console.log(forecastTemperature);
+    forecastTemperature.forEach(function (item) {
+      let currentTemp = item.innerHTML;
+      item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+    });
+    currentUnitState = "imperial";
+  }
 }
 
 function changeUnitC(event) {
@@ -155,12 +159,15 @@ function changeUnitC(event) {
   fahrenheit.innerHTML = "f";
   celsius.innerHTML = "<strong><u>c</strong></u>";
 
-  let forecastTemperature = document.querySelectorAll("#forecastTemperature");
-  console.log(forecastTemperature);
-  forecastTemperature.forEach(function (item) {
-    let currentTemp = item.innerHTML;
-    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
-  });
+  if (currentUnitState === "imperial") {
+    let forecastTemperature = document.querySelectorAll("#forecastTemperature");
+    console.log(forecastTemperature);
+    forecastTemperature.forEach(function (item) {
+      let currentTemp = item.innerHTML;
+      item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+    });
+    currentUnitState = "metric";
+  }
 }
 
 // axios.get(apiUrl).then(showWeather);
@@ -192,5 +199,6 @@ let celsuis = document.querySelector("#celsuis");
 celsius.addEventListener("click", changeUnitC);
 
 //celsius vs fahrenheit forecast
+let currentUnitState = "metric";
 
 searchCity("Geneve");
