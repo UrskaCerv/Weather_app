@@ -73,6 +73,12 @@ img {
   margin: -100px 0 0 230px;
 }
 
+#forecast-image {
+  width: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -110,7 +116,7 @@ li:first-letter {
 
 .next-days i {
   display: block;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .signature {
