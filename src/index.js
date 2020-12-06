@@ -33,6 +33,7 @@ function showWeather(response) {
   locationAndTime.innerHTML = formatDate(currentTime);
 
   document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#country").innerHTML = response.data.sys.country;
   celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML = `${Math.round(
     celsiusTemperature
@@ -183,6 +184,7 @@ fahrenheit.innerHTML = "f";
 
 //change location
 let city = document.querySelector("#city");
+let country = document.querySelector("#country");
 let submit = document.querySelector("#change-city");
 submit.addEventListener("submit", changeLocation);
 
