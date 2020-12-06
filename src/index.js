@@ -1,3 +1,4 @@
+//get date and time (time displayed in two digits even when number less than 10 (01, 02 ..))
 function formatDate(date) {
   let hours = date.getUTCHours();
   if (hours < 10) {
@@ -23,13 +24,12 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+//response from API current temperature to display in green part of the app
 function showWeather(response) {
   event.preventDefault();
-  console.log(response);
   let locationAndTime = document.querySelector("#location-and-time");
   let currentTime = new Date();
   currentTime.setTime(response.data.dt * 1000 + response.data.timezone * 1000); // javascript timestamps are in milliseconds
-  //currentTime.toUTCString();
   locationAndTime.innerHTML = formatDate(currentTime);
 
   document.querySelector("#city").innerHTML = response.data.name;
@@ -57,6 +57,8 @@ function showWeather(response) {
     .querySelector("#icon-big")
     .setAttribute("alt", response.data.weather[0].description);
 }
+
+//get names of the days in forecast
 function getDayOfTheWeek(timestamp) {
   var forecastDay = new Date();
   forecastDay.setTime(timestamp * 1000); // javascript timestamps are in milliseconds
@@ -67,9 +69,9 @@ function getDayOfTheWeek(timestamp) {
   return forecastDayName;
 }
 
+//reponse from API forecast to display in the white part of the app
 function showForecast(response) {
   event.preventDefault();
-  console.log(response);
   let forecastElements = document.querySelector("#forecast");
   forecastElements.innerHTML = null;
   let forecast = null;
@@ -77,12 +79,12 @@ function showForecast(response) {
   for (let index = 0; index < 4; index++) {
     forecast = response.data.list[index];
 
+    //find array with inforomation for midnight the next day - to set as a starting point for the forecast
     let midnightIndex = 0;
     while (response.data.list[midnightIndex].dt_txt[12] !== "0") {
       midnightIndex++;
     }
-    console.log(midnightIndex);
-
+    //display the correct inromation (the response gives object with 40 arrays - 8 for each day; img and day temperature taken from noon array (midnight + 4), night temperature taken from 6h a.am (midnight +2))
     forecastElements.innerHTML += `
   <div class="col-3" id="next-days">
     <p>
@@ -104,6 +106,7 @@ function showForecast(response) {
   }
 }
 
+//connect to API for current temperature and API for forecast
 function searchCity(city) {
   let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -113,12 +116,14 @@ function searchCity(city) {
   axios.get(apiUrl).then(showForecast);
 }
 
+//change location by writing in the form and submitting the answer
 function changeLocation(event) {
   event.preventDefault();
   let city = document.querySelector("#write-city").value;
   searchCity(city);
 }
 
+//get current position from API
 function searchPosition(position) {
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
@@ -127,11 +132,13 @@ function searchPosition(position) {
   axios.get(apiUrl).then(showWeather);
 }
 
+//user click on the geolocation button
 function geolocate(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchPosition);
 }
 
+//change units from C to F. If units already in F, don't do anything, if not, change to C.
 function changeUnitF(event) {
   event.preventDefault();
 
@@ -153,6 +160,7 @@ function changeUnitF(event) {
   }
 }
 
+//change units from F to C. If units already in C, don't do anything, if not, change to F.
 function changeUnitC(event) {
   event.preventDefault();
   let temperature = document.querySelector("#temperature");
@@ -171,16 +179,7 @@ function changeUnitC(event) {
   }
 }
 
-// axios.get(apiUrl).then(showWeather);
-temperature.innerHTML = 18 + "°";
-celsius.innerHTML = "<strong><u>c</strong></u>";
-fahrenheit.innerHTML = "f";
-//}
-
-//change time and set unit
-//let locationAndTime = document.querySelector("#location-and-time");
-//let currentTime = new Date();
-//locationAndTime.innerHTML = formatDate(currentTime);
+//GLOBAL VARIABLES
 
 //change location
 let city = document.querySelector("#city");
@@ -201,4 +200,5 @@ celsius.addEventListener("click", changeUnitC);
 //celsius vs fahrenheit forecast
 let currentUnitState = "metric";
 
+//default citu to search
 searchCity("Geneve");
