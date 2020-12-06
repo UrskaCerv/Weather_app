@@ -68,44 +68,38 @@ function getDayOfTheWeek(timestamp) {
 
 function showForecast(response) {
   event.preventDefault();
+  console.log(response);
   let forecastElements = document.querySelector("#forecast");
   forecastElements.innerHTML = null;
   let forecast = null;
 
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 4; index++) {
     forecast = response.data.list[index];
 
-    if (index === 0) {
-      forecastElements.innerHTML = `
-  <div class="col-1" id="blank">
-    
-  </div>`;
+    let midnightIndex = 0;
+    while (response.data.list[midnightIndex].dt_txt[12] !== "0") {
+      midnightIndex++;
     }
+    console.log(midnightIndex);
 
     forecastElements.innerHTML += `
-  <div class="col-2 ml=10px mr=10px" id="next-days">
+  <div class="col-3" id="next-days">
     <p>
-      ${getDayOfTheWeek(response.data.list[0 + 8 * index].dt)}
+      ${getDayOfTheWeek(response.data.list[midnightIndex + 8 * index].dt)}
       <br />
       <img id="forecast-image" 
       src="http://openweathermap.org/img/wn/${
-        response.data.list[4 + 8 * index].weather[0].icon
+        response.data.list[midnightIndex + 4 + 8 * index].weather[0].icon
       }@2x.png"
       />
       <strong><span class="day" id="forecastTemperature">${Math.round(
-        response.data.list[4 + 8 * index].main.temp
+        response.data.list[midnightIndex + 4 + 8 * index].main.temp
       )}</span>°</strong> <br /> <span class="night" id="forecastTemperature">${Math.round(
-      response.data.list[2 + 8 * index].main.temp
+      response.data.list[midnightIndex + 2 + 8 * index].main.temp
     )}</span>°
     </p>
   </div>
   `;
-
-    if (index === 5) {
-      forecastElements.innerHTML = `
-  <div class="col-1" id="blank">
-  </div>;`;
-    }
   }
 }
 

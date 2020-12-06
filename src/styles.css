@@ -115,6 +115,7 @@ li:first-letter {
 .next-days i {
   display: block;
   margin: 0;
+  text-align: center;
 }
 
 .signature {
