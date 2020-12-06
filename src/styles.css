@@ -77,6 +77,8 @@ img {
   width: 50px;
   display: block;
   margin: 0 auto;
+  position: relative;
+  left: -10px;
 }
 
 ul {
@@ -108,10 +110,6 @@ li:first-letter {
 }
 .day {
   margin: 0px;
-}
-
-.next-days {
-  text-align: center;
 }
 
 .next-days i {

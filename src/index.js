@@ -1,14 +1,14 @@
 function formatDate(date) {
-  let hours = date.getHours();
+  let hours = date.getUTCHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
-  let minutes = date.getMinutes();
+  let minutes = date.getUTCMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  let dayIndex = date.getDay();
+  let dayIndex = date.getUTCDay();
   let days = [
     "Sunday",
     "Monday",
@@ -25,6 +25,13 @@ function formatDate(date) {
 
 function showWeather(response) {
   event.preventDefault();
+  console.log(response);
+  let locationAndTime = document.querySelector("#location-and-time");
+  let currentTime = new Date();
+  currentTime.setTime(response.data.dt * 1000 + response.data.timezone * 1000); // javascript timestamps are in milliseconds
+  //currentTime.toUTCString();
+  locationAndTime.innerHTML = formatDate(currentTime);
+
   document.querySelector("#city").innerHTML = response.data.name;
   celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML = `${Math.round(
@@ -76,7 +83,7 @@ function showForecast(response) {
     }
 
     forecastElements.innerHTML += `
-  <div class="col-2" id="next-days">
+  <div class="col-2 ml=10px mr=10px" id="next-days">
     <p>
       ${getDayOfTheWeek(response.data.list[0 + 8 * index].dt)}
       <br />
@@ -85,10 +92,9 @@ function showForecast(response) {
         response.data.list[4 + 8 * index].weather[0].icon
       }@2x.png"
       />
-      <br />
       <strong><span class="day" id="forecastTemperature">${Math.round(
         response.data.list[4 + 8 * index].main.temp
-      )}</span>°</strong> <span class="night" id="forecastTemperature">${Math.round(
+      )}</span>°</strong> <br /> <span class="night" id="forecastTemperature">${Math.round(
       response.data.list[2 + 8 * index].main.temp
     )}</span>°
     </p>
@@ -177,10 +183,9 @@ fahrenheit.innerHTML = "f";
 //}
 
 //change time and set unit
-let locationAndTime = document.querySelector("#location-and-time");
-let currentTime = new Date();
-locationAndTime.innerHTML = formatDate(currentTime);
-//changeUnitCAutomatic();
+//let locationAndTime = document.querySelector("#location-and-time");
+//let currentTime = new Date();
+//locationAndTime.innerHTML = formatDate(currentTime);
 
 //change location
 let city = document.querySelector("#city");
