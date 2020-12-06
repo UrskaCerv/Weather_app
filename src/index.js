@@ -95,7 +95,7 @@ function showForecast(response) {
       />
       <strong><span class="day" id="forecastTemperature">${Math.round(
         response.data.list[midnightIndex + 4 + 8 * index].main.temp
-      )}</span>°</strong> <br /> <span class="night" id="forecastTemperature">${Math.round(
+      )}</span>°</strong><br /><span class="night" id="forecastTemperature">${Math.round(
       response.data.list[midnightIndex + 2 + 8 * index].main.temp
     )}</span>°
     </p>
@@ -184,7 +184,6 @@ fahrenheit.innerHTML = "f";
 
 //change location
 let city = document.querySelector("#city");
-let country = document.querySelector("#country");
 let submit = document.querySelector("#change-city");
 submit.addEventListener("submit", changeLocation);
 
