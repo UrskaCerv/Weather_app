@@ -77,32 +77,30 @@ function showForecast(response) {
   let forecast = null;
 
   for (let index = 0; index < 4; index++) {
-    forecast = response.data.list[index];
-
     //find array with inforomation for midnight the next day - to set as a starting point for the forecast
     let midnightIndex = 0;
     while (response.data.list[midnightIndex].dt_txt[12] !== "0") {
       midnightIndex++;
     }
-    //display the correct inromation (the response gives object with 40 arrays - 8 for each day; img and day temperature taken from noon array (midnight + 4), night temperature taken from 6h a.am (midnight +2))
+    //display the correct inromation (the response gives object with 40 arrays - 8 for each day;
+    //img and day temperature taken from noon array (midnight + 4), night temperature taken from 6h a.am (midnight +2))
     forecastElements.innerHTML += `
-  <div class="col-3" id="next-days">
-    <p>
-      ${getDayOfTheWeek(response.data.list[midnightIndex + 8 * index].dt)}
-      <br />
-      <img id="forecast-image" 
-      src="http://openweathermap.org/img/wn/${
-        response.data.list[midnightIndex + 4 + 8 * index].weather[0].icon
-      }@2x.png"
-      />
-      <strong><span class="day" id="forecastTemperature">${Math.round(
-        response.data.list[midnightIndex + 4 + 8 * index].main.temp
-      )}</span>°</strong><br /><span class="night" id="forecastTemperature">${Math.round(
+      <div class="col-3" id="next-days">
+        <p>
+          ${getDayOfTheWeek(response.data.list[midnightIndex + 8 * index].dt)}
+          <br />
+          <img id="forecast-image" 
+          src="http://openweathermap.org/img/wn/${
+            response.data.list[midnightIndex + 4 + 8 * index].weather[0].icon
+          }@2x.png"
+          />
+          <strong><span class="day" id="forecastTemperature">${Math.round(
+            response.data.list[midnightIndex + 4 + 8 * index].main.temp
+          )}</span>°</strong><br /><span class="night" id="forecastTemperature">${Math.round(
       response.data.list[midnightIndex + 2 + 8 * index].main.temp
     )}</span>°
-    </p>
-  </div>
-  `;
+        </p>
+      </div>`;
   }
 }
 
@@ -179,7 +177,7 @@ function changeUnitC(event) {
   }
 }
 
-//GLOBAL VARIABLES
+//GLOBAL VARIABLES AND EVENTS
 
 //change location
 let city = document.querySelector("#city");
@@ -200,5 +198,5 @@ celsius.addEventListener("click", changeUnitC);
 //celsius vs fahrenheit forecast
 let currentUnitState = "metric";
 
-//default citu to search
+//default city to search
 searchCity("Geneve");
