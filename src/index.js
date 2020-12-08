@@ -72,6 +72,7 @@ function getDayOfTheWeek(timestamp) {
 //reponse from API forecast to display in the white part of the app
 function showForecast(response) {
   event.preventDefault();
+  console.log(response);
   let forecastElements = document.querySelector("#forecast");
   forecastElements.innerHTML = null;
   let forecast = null;
@@ -128,6 +129,9 @@ function searchPosition(position) {
   let apiKey = "cddfb1e3d89e2258740a8f1797f07940";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 //user click on the geolocation button
